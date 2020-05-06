@@ -8,14 +8,15 @@ class UsersController < ApplicationController
 
     if @user.save
       session = { user_id: @user.id }
-      redirect_to root_path
+      redirect_to root_path, notice: 'Sign In successfully'
     else
       render 'new'
     end
   end
 
   def show
-    
+    @users = User.find(params[:id])
+    @stories = @users.stories
   end
 
   private
